@@ -1,0 +1,62 @@
+node {
+  stage ('Pull from SCM'){
+  //Passing the pipeline the ID of my GitHub credentials and specifying the repo for my app
+  git url: 'https://github.com/sumitsaiwal/AppStats-Dashboard.git'
+  }
+
+  stage ('Test and Build app'){
+      //requires Pipeline Maven Integration Plugin
+      withMaven(maven: 'M3') {
+      // Run the maven build
+      sh 'mvn clean package'
+    }
+  //archiving the war
+  archive 'target/*.war'
+  }
+
+  stage 'Package Image'
+  //Packaging the image into a Docker image //CloudBees Docker Pipeline Plugin //Docker-workflow Plugin
+  def pkg = docker.build ('sumitsaiwal/appstats-dashboard', '.')
+  
+  stage 'Push Image to DockerHub'
+  //Pushing the packaged app in image into DockerHub //CloudBees Docker Pipeline Plugin //Docker-workflow Plugin
+  docker.withRegistry ('https://index.docker.io/v1/', 'cacee84c-e05a-46c4-ad9e-441a06259a93') {
+      sh 'ls -lart'
+      pkg.push 'docker-demo'
+  }
+  
+  stage ('Bring up Container in Azure environment'){
+	sh 'docker stop demo'
+	sh 'docker rm demo'
+	sh 'docker pull sumitsaiwal/grenoble:docker-demo'
+	sh 'docker run -d --name demo -p 443:8080 sumitsaiwal/appstats-dashboard:docker-demo'
+	sh 'sleep 30'
+	sh 'docker logs demo'
+	sh 'sleep 10'
+	sh 'docker logs demo'
+	}
+	
+  stage ('Bring up Container in Azure Swarm environment'){
+        sshagent (credentials: ['3736983f-2969-46ec-bda8-c7f160e3d82f']) {
+            sh 'ssh -o StrictHostKeyChecking=no ${Swarm_Host_User_Azure}@${Swarm_Host_Azure} pwd'
+            sh 'ssh -o StrictHostKeyChecking=no ${Swarm_Host_User_Azure}@${Swarm_Host_Azure} docker service rm website'
+            sh 'ssh -o StrictHostKeyChecking=no ${Swarm_Host_User_Azure}@${Swarm_Host_Azure} docker service create --name website --publish 443:8080 sumitsaiwal/appstats-dashboard:docker-demo'
+            sh 'sleep 30'
+        }
+    }
+    
+  stage ('Bring up Container in AWS environment'){
+  sshagent (credentials: ['6ec9d230-c6a7-4a9f-b1a9-f038d4527ddd']) {
+    if (env.BUILD_NUMBER != 0) {
+            sh 'ssh -o StrictHostKeyChecking=no ${Docker_Host_User_AWS}@${Docker_Host_AWS} docker stop demo'
+	    sh 'ssh -o StrictHostKeyChecking=no ${Docker_Host_User_AWS}@${Docker_Host_AWS} docker rm demo'
+        }
+    sh 'ssh -o StrictHostKeyChecking=no ${Docker_Host_User_AWS}@${Docker_Host_AWS} docker pull sumitsaiwal/appstats-dashboard:docker-demo'
+    sh 'ssh -o StrictHostKeyChecking=no ${Docker_Host_User_AWS}@${Docker_Host_AWS} docker run -d --name demo -p 8080:8080 sumitsaiwal/appstats-dashboard:docker-demo'
+    sh 'sleep 30' 
+    sh 'ssh -o StrictHostKeyChecking=no ${Docker_Host_User_AWS}@${Docker_Host_AWS} docker logs demo'
+    sh 'sleep 10'
+    sh 'ssh -o StrictHostKeyChecking=no ${Docker_Host_User_AWS}@${Docker_Host_AWS} docker logs demo'
+  }
+  }
+}
