@@ -28,7 +28,7 @@ node {
   stage ('Bring up Container in Azure environment'){
 	sh 'docker stop demo'
 	sh 'docker rm demo'
-	sh 'docker pull sumitsaiwal/grenoble:docker-demo'
+	sh 'docker pull sumitsaiwal/appstats-dashboard:docker-demo'
 	sh 'docker run -d --name demo -p 443:8080 sumitsaiwal/appstats-dashboard:docker-demo'
 	sh 'sleep 30'
 	sh 'docker logs demo'
