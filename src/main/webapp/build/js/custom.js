@@ -3055,8 +3055,8 @@ if (typeof NProgress != 'undefined') {
 
 			  echartRadar.setOption({
 				title: {
-				  text: 'Budget vs spending',
-				  subtext: 'Subtitle'
+				  text: 'Memory allocated vs Memory used',
+				  subtext: 'memory'
 				},
 				 tooltip: {
 					trigger: 'item'
@@ -3065,7 +3065,7 @@ if (typeof NProgress != 'undefined') {
 				  orient: 'vertical',
 				  x: 'right',
 				  y: 'bottom',
-				  data: ['Allocated Budget', 'Actual Spending']
+				  data: ['Allocated Memory', 'Used Memory']
 				},
 				toolbox: {
 				  show: true,
@@ -3085,19 +3085,19 @@ if (typeof NProgress != 'undefined') {
 					text: 'Sales',
 					max: 6000
 				  }, {
-					text: 'Administration',
+					text: 'createUser-API',
 					max: 16000
 				  }, {
-					text: 'Information Techology',
+					text: 'cart-API',
 					max: 30000
 				  }, {
-					text: 'Customer Support',
+					text: 'getUser-API',
 					max: 38000
 				  }, {
-					text: 'Development',
+					text: 'checkout-API',
 					max: 52000
 				  }, {
-					text: 'Marketing',
+					text: 'payment-API',
 					max: 25000
 				  }]
 				}],
@@ -3125,8 +3125,8 @@ if (typeof NProgress != 'undefined') {
 
 			  echartFunnel.setOption({
 				title: {
-				  text: 'Echart Pyramid Graph',
-				  subtext: 'Subtitle'
+				  text: 'Application Events',
+				  subtext: 'API events'
 				},
 				tooltip: {
 				  trigger: 'item',
@@ -3146,7 +3146,7 @@ if (typeof NProgress != 'undefined') {
 				  }
 				},
 				legend: {
-				  data: ['Something #1', 'Something #2', 'Something #3', 'Something #4', 'Something #5'],
+				  data: ['GetUser #1', 'AddtoCart #2', 'CartEmpty #3', 'CardInvalid #4', 'payment #5'],
 				  orient: 'vertical',
 				  x: 'left',
 				  y: 'bottom'
@@ -3158,19 +3158,19 @@ if (typeof NProgress != 'undefined') {
 				  width: '40%',
 				  data: [{
 					value: 60,
-					name: 'Something #1'
+					name: 'GetUser #1'
 				  }, {
 					value: 40,
-					name: 'Something #2'
+					name: 'AddtoCart #2'
 				  }, {
 					value: 20,
-					name: 'Something #3'
+					name: 'CartEmpty #3'
 				  }, {
 					value: 80,
-					name: 'Something #4'
+					name: 'CardInvalid #4'
 				  }, {
 					value: 100,
-					name: 'Something #5'
+					name: 'payment #5'
 				  }]
 				}]
 			  });
@@ -3201,7 +3201,7 @@ if (typeof NProgress != 'undefined') {
 				  }
 				},
 				series: [{
-				  name: 'Performance',
+				  name: 'Average Performance',
 				  type: 'gauge',
 				  center: ['50%', '50%'],
 				  startAngle: 140,
@@ -4072,7 +4072,7 @@ if (typeof NProgress != 'undefined') {
 				legend: {
 				  x: 'center',
 				  y: 'bottom',
-				  data: ['rose1', 'rose2', 'rose3', 'rose4', 'rose5', 'rose6']
+				  data: ['hpe-ind-01', 'hpe-ind-02', 'hpe-ind-03', 'hpe-ind-04', 'hpe-ind-05', 'hpe-ind-06']
 				},
 				toolbox: {
 				  show: true,
@@ -4103,22 +4103,22 @@ if (typeof NProgress != 'undefined') {
 				  sort: 'ascending',
 				  data: [{
 					value: 10,
-					name: 'rose1'
+					name: 'hpe-ind-01'
 				  }, {
 					value: 5,
-					name: 'rose2'
+					name: 'hpe-ind-02'
 				  }, {
 					value: 15,
-					name: 'rose3'
+					name: 'hpe-ind-03'
 				  }, {
 					value: 25,
-					name: 'rose4'
+					name: 'hpe-ind-04'
 				  }, {
 					value: 20,
-					name: 'rose5'
+					name: 'hpe-ind-05'
 				  }, {
 					value: 35,
-					name: 'rose6'
+					name: 'hpe-ind-06'
 				  }]
 				}]
 			  });
@@ -4140,7 +4140,7 @@ if (typeof NProgress != 'undefined') {
 				legend: {
 				  x: 'center',
 				  y: 'bottom',
-				  data: ['Direct Access', 'E-mail Marketing', 'Union Ad', 'Video Ads', 'Search Engine']
+				  data: ['createUser-API', 'cart-API', 'getUser-API', 'checkout-API', 'Search-API']
 				},
 				toolbox: {
 				  show: true,
@@ -4193,19 +4193,19 @@ if (typeof NProgress != 'undefined') {
 				  },
 				  data: [{
 					value: 335,
-					name: 'Direct Access'
+					name: 'createUser-API'
 				  }, {
 					value: 310,
-					name: 'E-mail Marketing'
+					name: 'cart-API'
 				  }, {
 					value: 234,
-					name: 'Union Ad'
+					name: 'getUser-API'
 				  }, {
 					value: 135,
-					name: 'Video Ads'
+					name: 'checkout-API'
 				  }, {
 					value: 1548,
-					name: 'Search Engine'
+					name: 'Search-API'
 				  }]
 				}]
 			  });
@@ -4226,7 +4226,7 @@ if (typeof NProgress != 'undefined') {
 				legend: {
 				  x: 'center',
 				  y: 'bottom',
-				  data: ['Direct Access', 'E-mail Marketing', 'Union Ad', 'Video Ads', 'Search Engine']
+				  data: ['createUser-API', 'cart-API', 'getUser-API', 'checkout-API', 'Search-API']
 				},
 				toolbox: {
 				  show: true,
@@ -4261,19 +4261,19 @@ if (typeof NProgress != 'undefined') {
 				  center: ['50%', '48%'],
 				  data: [{
 					value: 335,
-					name: 'Direct Access'
+					name: 'createUser-API'
 				  }, {
 					value: 310,
-					name: 'E-mail Marketing'
+					name: 'cart-API'
 				  }, {
 					value: 234,
-					name: 'Union Ad'
+					name: 'getUser-API'
 				  }, {
 					value: 135,
-					name: 'Video Ads'
+					name: 'checkout-API'
 				  }, {
 					value: 1548,
-					name: 'Search Engine'
+					name: 'Search-API'
 				  }]
 				}]
 			  });
@@ -4314,8 +4314,6 @@ if (typeof NProgress != 'undefined') {
 
 			  echartMiniPie .setOption({
 				title: {
-				  text: 'Chart #2',
-				  subtext: 'From ExcelHome',
 				  sublink: 'http://e.weibo.com/1341556070/AhQXtjbqh',
 				  x: 'center',
 				  y: 'center',
@@ -4336,7 +4334,7 @@ if (typeof NProgress != 'undefined') {
 				  x: 170,
 				  y: 45,
 				  itemGap: 12,
-				  data: ['68%Something #1', '29%Something #2', '3%Something #3'],
+				  data: ['68% GetUser #1', '29% AddUser #2', '3% GetAmount #3'],
 				},
 				toolbox: {
 				  show: true,
@@ -4372,7 +4370,7 @@ if (typeof NProgress != 'undefined') {
 				  itemStyle: dataStyle,
 				  data: [{
 					value: 68,
-					name: '68%Something #1'
+					name: '68% GetUser #1'
 				  }, {
 					value: 32,
 					name: 'invisible',
@@ -4386,7 +4384,7 @@ if (typeof NProgress != 'undefined') {
 				  itemStyle: dataStyle,
 				  data: [{
 					value: 29,
-					name: '29%Something #2'
+					name: '29% AddUser #2'
 				  }, {
 					value: 71,
 					name: 'invisible',
@@ -4400,7 +4398,7 @@ if (typeof NProgress != 'undefined') {
 				  itemStyle: dataStyle,
 				  data: [{
 					value: 3,
-					name: '3%Something #3'
+					name: '3% GetAmount #3'
 				  }, {
 					value: 97,
 					name: 'invisible',
