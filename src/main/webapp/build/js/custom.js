@@ -2977,14 +2977,14 @@ if (typeof NProgress != 'undefined') {
 
 				  echartBar.setOption({
 					title: {
-					  text: 'Frequent Hits',
-					  subtext: ' '
+					  text: 'Graph title',
+					  subtext: 'Graph Sub-text'
 					},
 					tooltip: {
 					  trigger: 'axis'
 					},
 					legend: {
-					  data: ['sales', 'getPay-API']
+					  data: ['sales', 'purchases']
 					},
 					toolbox: {
 					  show: false
