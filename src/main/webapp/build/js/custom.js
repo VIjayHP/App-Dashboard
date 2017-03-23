@@ -4,7 +4,8 @@
  * Usage:
  * $(window).smartresize(function(){  
  *     // code here
- * });
+ * })
+ one more comment
  */
 (function($,sr){
     // debouncing function from John Hann
