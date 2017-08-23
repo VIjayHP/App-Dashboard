@@ -56,7 +56,7 @@ node {
     sh 'sleep 15'
     sh 'kubectl delete service demo'
     sh 'sleep 15'
-	sh 'kubectl run demo --image=sumitsaiwal/appstats-dashboard:docker-demo --port=8080'
+	sh 'kubectl run demo --image=sumitsaiwal/appstats-dashboard:docker-demo --port=8080 --image-pull-policy=Always --replicas=3'
 	sh 'sleep 30'
 	sh 'kubectl get deployment demo'
 	sh 'sleep 10'
