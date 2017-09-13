@@ -5,3 +5,4 @@ applications:
   instances: 1
   host: appstats
   path: target/demo.war
+  buildpack: java_buildpack
