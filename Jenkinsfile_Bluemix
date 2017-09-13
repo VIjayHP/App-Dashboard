@@ -1,0 +1,26 @@
+node {
+  stage ('Pull from SCM'){
+  //Passing the pipeline the ID of my GitHub credentials and specifying the repo for my app
+  git url: 'https://github.com/sumitsaiwal/AppStats-Dashboard.git'
+  }
+
+  stage ('Test and Build app'){
+      //requires Pipeline Maven Integration Plugin
+      withMaven(maven: 'M3') {
+      // Run the maven build
+      sh 'mvn clean package'
+    }
+  //archiving the war
+  archive 'target/*.war'
+  }
+  
+  stage ('Build push to Cloud Foundry'){
+      pushToCloudFoundry(
+		target: 'api.ng.bluemix.net',
+		organization: 'DXC Transportation',
+		cloudSpace: 'AA',
+		credentialsId: 'a4fe11fa-72ef-43f8-8906-65ac64d7adf8'
+	)
+  }
+  
+}
