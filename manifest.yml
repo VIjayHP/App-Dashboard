@@ -1,0 +1,7 @@
+---
+applications:
+- name: appstats
+  memory: 256M
+  instances: 1
+  host: appstats
+  path: target/demo.war
